@@ -7,13 +7,7 @@
 <%@ page import="top.woodwhale.pojo.Supplier" %>
 <%@ page import="top.woodwhale.service.item.ItemServiceImpl" %>
 <%@ page import="top.woodwhale.service.item.IItemService" %>
-<%@ page import="top.woodwhale.pojo.Item" %><%--
-  Created by IntelliJ IDEA.
-  User: 木鲸
-  Date: 2022/5/18
-  Time: 11:04
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="top.woodwhale.pojo.Item" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

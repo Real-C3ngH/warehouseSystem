@@ -1,170 +1,128 @@
-<%@ page import="top.woodwhale.pojo.Warehouse" %>
-<%@ page import="top.woodwhale.service.warehouse.IWarehouseService" %>
-<%@ page import="top.woodwhale.service.warehouse.WarehouseServiceImpl" %>
-<%@ page import="java.util.List" %>
-<%@ page import="top.woodwhale.pojo.WarehouseItem" %>
-<%@ page import="top.woodwhale.service.item.ItemServiceImpl" %>
-<%@ page import="top.woodwhale.service.item.IItemService" %>
-<%@ page import="top.woodwhale.pojo.Item" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="com.google.gson.Gson" %>
-<%@ page import="java.text.SimpleDateFormat" %><%--
-  Created by IntelliJ IDEA.
-  User: 木鲸
-  Date: 2022/5/15
-  Time: 21:53
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>仓库库存</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/layui/css/layui.css">
+    <title>仓库管理系统</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
 </head>
+<body style="overflow-x: hidden; overflow-y: auto;">
 
-<%
-    IWarehouseService warehouseService = WarehouseServiceImpl.getWarehouseService();
-    List<WarehouseItem> warehouseItems = warehouseService.listWarehouseItems();
-    IItemService itemService = ItemServiceImpl.getItemService();
-%>
-
-<body>
-<div class="warehouse-info-box">
-
-    <div class="layui-card">
-        <div class="layui-card-header" style="height: 60px !important;border-bottom: 2px solid #f2f2f2">
-            <div style="line-height:60px;font-size: 30px;font-weight: 600; text-align: center">仓库库存</div>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo layui-hide-xs layui-bg-black"
+             style="color: #f3f4f5; font-weight: 555; font-size: 20px;">
+            仓库管理系统
         </div>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item" lay-header-event="menuLeft">
+                <i class="layui-icon layui-icon-spread-left"></i>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+                <a href="javascript:;">
+                    <img src="https://c3ngh-blog.oss-cn-hangzhou.aliyuncs.com/img/C3ngH.jpg" class="layui-nav-img"> admin
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">仪表盘</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-more-vertical"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
 
-        <div class="layui-card-body">
-
-            <table class="layui-table" lay-size="lg">
-                <colgroup>
-                    <col width="200" align="center">
-                    <col align="center">
-                    <col align="center">
-                    <col align="center">
-                    <col align="center">
-                    <col align="center">
-                    <col align="center">
-                </colgroup>
-                <thead>
-                <tr>
-                    <th>库存账单id</th>
-                    <th>仓库公司名称</th>
-                    <th>商品名称</th>
-                    <th>库存数量</th>
-                    <th>总价值</th>
-                    <th>库存状态</th>
-                    <th>仓库状态</th>
-                    <th>创建时间</th>
-                    <th>更新时间</th>
-                </tr>
-                </thead>
-                <tbody>
-                <%
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    for (WarehouseItem warehouseItem : warehouseItems) {
-                        String warehouseId = warehouseItem.getId();
-                        Warehouse warehouseInMysql = warehouseService.getWarehouseById(warehouseId);
-                        Item itemInMysql = itemService.getItemById(warehouseItem.getItemId());
-                        String itemCount = warehouseItem.getItemCount();
-                        Date createTime = warehouseItem.getCreateTime();
-                        Date updateTime = warehouseItem.getUpdateTime();
-                        Double totalPrice = Integer.parseInt(itemCount) * itemInMysql.getPrice();
-                        String itemName = itemInMysql.getName();
-                        String warehouseName = warehouseInMysql.getName();
-                        boolean flag = Integer.parseInt(itemCount) > 0;
-                        String state = flag ? "非空" : "空仓";
-                        String warehouseState = warehouseInMysql.getState() ? "营业中" : "已删除";
-                %>
-                <tr>
-                    <td><%=warehouseId%>
-                    </td>
-                    <td><span style="cursor: pointer"
-                              onclick='clickWarehouse(<%=new Gson().toJson(warehouseInMysql)%>)'><%=warehouseName%></span>
-                    </td>
-                    <td><span style="cursor: pointer"
-                              onclick='clickItem(<%=new Gson().toJson(itemInMysql)%>)'><%=itemName%></span>
-                    </td>
-                    <td><span class="layui-badge layui-bg-green"><%=itemCount%></span>
-                    </td>
-                    <td><span class="layui-badge layui-bg-orange"><%=String.format("%.2f", totalPrice)%></span>
-                    </td>
-                    <td>
-                        <%
-                            if (flag) {
-                        %>
-                        <span class="layui-badge layui-bg-blue"><%=state%></span>
-                        <%
-                        } else {
-                        %>
-                        <span class="layui-badge"><%=state%></span>
-                        <%
-                            }
-                        %>
-                    </td>
-                    <td>
-                        <%
-                            if (warehouseInMysql.getState()) {
-                        %>
-                        <span class="layui-badge layui-bg-black"><%=warehouseState%></span>
-                        <%
-                        } else {
-                        %>
-                        <span class="layui-badge"><%=warehouseState%></span>
-                        <%
-                            }
-                        %>
-                    </td>
-                    <td><%=simpleDateFormat.format(createTime)%>
-                    </td>
-                    <td><%=simpleDateFormat.format(updateTime)%>
-                    </td>
-                    </td>
-                </tr>
-                <%
-                    }
-                %>
-                </tbody>
-            </table>
-
-            <div id="page"></div>
-
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">仓库管理</a>
+                    <dl class="layui-nav-child">
+                        <dd class="layui-this">
+                            <a onclick="jump2Page('${pageContext.request.contextPath}/jsp/warehouse/dashboard.jsp')">仪表盘</a>
+                        </dd>
+                        <dd>
+                            <a onclick="jump2Page('${pageContext.request.contextPath}/jsp/warehouse/info.jsp')">仓库信息</a>
+                        </dd>
+                        <dd>
+                            <a onclick="jump2Page('${pageContext.request.contextPath}/jsp/warehouse/stock.jsp')">仓库库存</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">供货商管理</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a onclick="jump2Page('${pageContext.request.contextPath}/jsp/supplier/info.jsp')">供货商信息</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">材料管理</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a onclick="jump2Page('${pageContext.request.contextPath}/jsp/item/info.jsp')">材料信息</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">材料操作</a>
+                    <dl class="layui-nav-child">
+                        <dd><a onclick="jump2Page('${pageContext.request.contextPath}/jsp/operation/purchase.jsp')">仓库进货</a></dd>
+                        <dd><a onclick="jump2Page('${pageContext.request.contextPath}/jsp/operation/outflow.jsp')">仓库出货</a></dd>
+                        <dd><a onclick="jump2Page('${pageContext.request.contextPath}/jsp/operation/dispatch.jsp')">两仓互调</a></dd>
+                        <dd><a onclick="jump2Page('${pageContext.request.contextPath}/jsp/operation/history.jsp')">台账历史</a></dd>
+                    </dl>
+                </li>
+            </ul>
         </div>
     </div>
 
+    <div class="layui-body">
+        <iframe id="mainContent" width="100%" height="100%" style="background-color: #fefefe;" allowTransparency="true"></iframe>
+    </div>
+
+    <div class="layui-footer">
+        <div style="text-align: center; font-size: 14px;">2025 ©张承浩 计算机科学与技术学院 软件工程2302</div>
+    </div>
 </div>
 
-</body>
-</html>
-
-<style>
-    .warehouse-info-box .layui-table tr {
-        text-align: center !important;
-    }
-
-    .warehouse-info-box .layui-table th {
-        text-align: center !important;
-        font-size: 16px !important;
-        font-weight: 555 !important;
-    }
-</style>
-
-<script src="${pageContext.request.contextPath}/res/js/main.js"></script>
 <script src="${pageContext.request.contextPath}/layui/layui.js"></script>
+<script src="${pageContext.request.contextPath}/res/js/main.js"></script>
 <script>
-    layui.use(['laypage'], () => {
-        let laypage = layui.laypage
-        //执行一个laypage实例
-        laypage.render({
-            elem: 'page',
-            count: <%=warehouseItems.size()%>,
-            layout: ['prev', 'page', 'next', 'count', 'refresh', 'skip'],
-            limit: 10,
-            jump: (obj, isFirst) => {
-                // TODO: 跳转
+    layui.use(['element', 'layer', 'util'], () => {
+        const element = layui.element,
+            layer = layui.layer,
+            util = layui.util,
+            $ = layui.$;
+
+        util.event('lay-header-event', {
+            menuRight: () => {
+                layer.open({
+                    type: 1,
+                    content: '<div style="padding: 15px;">一个简单的仓库管理系统</div>' +
+                        '<div style="padding: 15px;">for 软件设计综合训练</div>',
+                    area: ['260px', '100%'],
+                    offset: 'rt',
+                    anim: 1,
+                    shadeClose: true,
+                    resize: false
+                });
             }
         });
+
+        $('#mainContent').on('load', () => {
+            history.pushState(null, null, document.URL);
+            window.addEventListener('popstate', () => {
+                history.pushState(null, null, document.URL);
+            });
+        });
     });
+
+    // 默认跳转到仪表盘
+    jump2Page("${pageContext.request.contextPath}/jsp/warehouse/dashboard.jsp");
 </script>
+</body>
+</html>

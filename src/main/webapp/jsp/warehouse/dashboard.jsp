@@ -10,13 +10,7 @@
 <%@ page import="top.woodwhale.pojo.Supplier" %>
 <%@ page import="top.woodwhale.service.bill.IBillService" %>
 <%@ page import="top.woodwhale.service.bill.BillServiceImpl" %>
-<%@ page import="top.woodwhale.pojo.Bill" %><%--
-  Created by IntelliJ IDEA.
-  User: 木鲸
-  Date: 2022/5/15
-  Time: 18:40
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="top.woodwhale.pojo.Bill" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
