@@ -30,7 +30,8 @@ public interface ISupplierService {
 
     /**
      * 修改供货商信息
-     * @param id id
+     *
+     * @param id       id
      * @param supplier 供货商信息
      * @return
      */
@@ -38,6 +39,7 @@ public interface ISupplierService {
 
     /**
      * 通过id查找供货商
+     *
      * @param id 供货商id
      * @return Supplier
      */

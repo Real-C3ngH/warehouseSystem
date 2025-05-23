@@ -39,15 +39,15 @@ public class DispatchServlet extends HttpServlet {
                 IBillService billService = BillServiceImpl.getBillService();
                 int res = billService.addDispatchBill(bill);
                 req.setAttribute("msg", res > 0 ? "调度成功，请前往台账历史查看详情！" : "调度失败，该材料在出库仓库中库存不足！");
-                req.setAttribute("head","调度提示");
-                req.setAttribute("flag",res > 0 ? "1" : "0");
+                req.setAttribute("head", "调度提示");
+                req.setAttribute("flag", res > 0 ? "1" : "0");
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.d(this,"添加仓库调度记录失败");
+                Log.d(this, "添加仓库调度记录失败");
             }
         }
         // 转发回登陆页面，写携带msg信息
-        req.getRequestDispatcher("/jsp/operation/dispatch.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/operation/dispatch.jsp").forward(req, resp);
     }
 
     @Override

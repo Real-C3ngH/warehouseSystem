@@ -5,7 +5,6 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="com.google.gson.Gson" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

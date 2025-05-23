@@ -39,16 +39,16 @@ public class OutflowServlet extends HttpServlet {
                 IBillService billService = BillServiceImpl.getBillService();
                 int res = billService.addOutflowBill(bill);
                 req.setAttribute("msg", res > 0 ? "出库成功，请前往台账历史查看详情！" : "出库失败，该材料在仓库中库存不足！");
-                req.setAttribute("head","出库提示");
-                req.setAttribute("flag",res > 0 ? "1" : "0");
+                req.setAttribute("head", "出库提示");
+                req.setAttribute("flag", res > 0 ? "1" : "0");
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.d(this,"添加仓库出货记录失败");
+                Log.d(this, "添加仓库出货记录失败");
             }
         }
         // 转发回登陆页面，写携带msg信息
-        req.getRequestDispatcher("/jsp/operation/outflow.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/operation/outflow.jsp").forward(req, resp);
     }
 
     @Override

@@ -37,11 +37,11 @@ public class EditItemServlet extends HttpServlet {
             item.setId(id);
             IItemService itemService = ItemServiceImpl.getItemService();
             int res = itemService.editItemById(id, item);
-            req.setAttribute("msg",res > 0 ? "更新材料成功" : "更新材料失败");
+            req.setAttribute("msg", res > 0 ? "更新材料成功" : "更新材料失败");
             req.setAttribute("head", "更新材料");
             req.setAttribute("flag", res > 0 ? "1" : "0");
         }
         // 转发回登陆页面，写携带msg信息
-        req.getRequestDispatcher("/jsp/item/info.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/item/info.jsp").forward(req, resp);
     }
 }

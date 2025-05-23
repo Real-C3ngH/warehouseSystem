@@ -44,9 +44,6 @@ public class BillDaoImpl implements IBillDao {
      * 查看最新的所有台账
      *
      * @return list
-     *
-     *
-     *
      */
     @Override
     public List<Bill> findAll() {

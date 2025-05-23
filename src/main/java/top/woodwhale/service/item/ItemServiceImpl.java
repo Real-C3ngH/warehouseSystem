@@ -9,9 +9,8 @@ import top.woodwhale.utils.TextUtils;
 import java.util.List;
 
 public class ItemServiceImpl implements IItemService {
-    IItemDao itemDao = new ItemDaoImpl();
-
     private static IItemService iItemService = null;
+    IItemDao itemDao = new ItemDaoImpl();
 
     private ItemServiceImpl() {
 

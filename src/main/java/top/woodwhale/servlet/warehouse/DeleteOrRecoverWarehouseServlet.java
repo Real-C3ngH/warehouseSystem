@@ -23,11 +23,11 @@ public class DeleteOrRecoverWarehouseServlet extends HttpServlet {
         if (!TextUtils.isEmpty(id)) {
             IWarehouseService warehouseService = WarehouseServiceImpl.getWarehouseService();
             int res = warehouseService.deleteOrRecoverWarehouseById(id);
-            req.setAttribute("msg",res > 0 ? "修改仓库状态成功" : "修改仓库状态失败");
+            req.setAttribute("msg", res > 0 ? "修改仓库状态成功" : "修改仓库状态失败");
             req.setAttribute("head", "仓库状态");
             req.setAttribute("flag", res > 0 ? "1" : "0");
         }
         // 转发回登陆页面，写携带msg信息
-        req.getRequestDispatcher("/jsp/warehouse/info.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/warehouse/info.jsp").forward(req, resp);
     }
 }

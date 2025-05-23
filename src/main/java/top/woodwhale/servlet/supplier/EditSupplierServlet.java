@@ -31,11 +31,11 @@ public class EditSupplierServlet extends HttpServlet {
             supplier.setId(id);
             ISupplierService supplierService = SupplierServiceImpl.getSupplierService();
             int res = supplierService.editSupplierById(id, supplier);
-            req.setAttribute("msg",res > 0 ? "更新供货商成功" : "更新供货商失败");
+            req.setAttribute("msg", res > 0 ? "更新供货商成功" : "更新供货商失败");
             req.setAttribute("head", "更新供货商");
             req.setAttribute("flag", res > 0 ? "1" : "0");
         }
         // 转发回登陆页面，写携带msg信息
-        req.getRequestDispatcher("/jsp/supplier/info.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/supplier/info.jsp").forward(req, resp);
     }
 }

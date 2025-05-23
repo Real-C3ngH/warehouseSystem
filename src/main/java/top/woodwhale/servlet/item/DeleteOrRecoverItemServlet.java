@@ -17,12 +17,12 @@ public class DeleteOrRecoverItemServlet extends HttpServlet {
         if (!TextUtils.isEmpty(id)) {
             IItemService itemService = ItemServiceImpl.getItemService();
             int res = itemService.deleteOrRecoverItemById(id);
-            req.setAttribute("msg",res > 0 ? "修改材料状态成功" : "修改材料状态失败");
+            req.setAttribute("msg", res > 0 ? "修改材料状态成功" : "修改材料状态失败");
             req.setAttribute("head", "材料状态");
             req.setAttribute("flag", res > 0 ? "1" : "0");
         }
         // 转发回登陆页面，写携带msg信息
-        req.getRequestDispatcher("/jsp/item/info.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/item/info.jsp").forward(req, resp);
     }
 
     @Override

@@ -39,15 +39,15 @@ public class PurchaseServlet extends HttpServlet {
                 IBillService billService = BillServiceImpl.getBillService();
                 int res = billService.addPurchaseBill(bill);
                 req.setAttribute("msg", res > 0 ? "进货成功，请前往台账历史查看详情！" : "进货失败，请重试！");
-                req.setAttribute("head","进货提示");
-                req.setAttribute("flag",res > 0 ? "1" : "0");
+                req.setAttribute("head", "进货提示");
+                req.setAttribute("flag", res > 0 ? "1" : "0");
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d(this, "添加仓库进货记录失败");
             }
         }
         // 转发回登陆页面，写携带msg信息
-        req.getRequestDispatcher("/jsp/operation/purchase.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/operation/purchase.jsp").forward(req, resp);
     }
 
     @Override

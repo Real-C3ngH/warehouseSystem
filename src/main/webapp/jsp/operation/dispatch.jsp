@@ -8,7 +8,6 @@
 <%@ page import="top.woodwhale.service.item.ItemServiceImpl" %>
 <%@ page import="top.woodwhale.pojo.Item" %>
 <%@ page import="top.woodwhale.pojo.Supplier" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

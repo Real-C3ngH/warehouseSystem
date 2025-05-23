@@ -29,12 +29,12 @@ public class AddWarehouseServlet extends HttpServlet {
             warehouse.setId(IdUtils.getId());
             IWarehouseService warehouseService = WarehouseServiceImpl.getWarehouseService();
             int res = warehouseService.addWarehouse(warehouse);
-            req.setAttribute("msg",res > 0 ? "添加仓库成功" : "添加仓库失败");
+            req.setAttribute("msg", res > 0 ? "添加仓库成功" : "添加仓库失败");
             req.setAttribute("head", "添加仓库");
             req.setAttribute("flag", res > 0 ? "1" : "0");
         }
         // 转发回登陆页面，写携带msg信息
-        req.getRequestDispatcher("/jsp/warehouse/info.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/warehouse/info.jsp").forward(req, resp);
     }
 
     @Override

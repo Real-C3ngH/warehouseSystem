@@ -15,6 +15,7 @@ public interface ISupplierDao {
 
     /**
      * 根据id删除或者恢复一个供货商
+     *
      * @param id 供货商id
      * @return 结果
      */

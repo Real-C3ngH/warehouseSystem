@@ -7,6 +7,7 @@ import java.util.List;
 public interface IItemDao {
     /**
      * 保存材料到MySQL中
+     *
      * @param item 材料pojo
      * @return 结果
      */
@@ -14,6 +15,7 @@ public interface IItemDao {
 
     /**
      * 根据id删除或者恢复一个材料
+     *
      * @param id 材料id
      * @return 结果
      */
@@ -21,6 +23,7 @@ public interface IItemDao {
 
     /**
      * 通过材料id查询材料
+     *
      * @param id 材料id
      * @return Item类
      */
@@ -28,7 +31,8 @@ public interface IItemDao {
 
     /**
      * 查找MySQL中所有的材料信息
-     * @return  List<Item>
+     *
+     * @return List<Item>
      */
     List<Item> findAll();
 }

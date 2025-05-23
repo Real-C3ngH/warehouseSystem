@@ -99,7 +99,7 @@ public class BaseDao {
                 flag = false;
             }
         }
-        if (globalConn!= null) {
+        if (globalConn != null) {
             try {
                 globalConn.close();
                 globalConn = null;

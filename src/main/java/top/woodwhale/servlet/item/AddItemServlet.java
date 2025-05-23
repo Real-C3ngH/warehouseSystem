@@ -35,11 +35,11 @@ public class AddItemServlet extends HttpServlet {
             item.setName(name);
             IItemService itemService = ItemServiceImpl.getItemService();
             int res = itemService.addItem(item);
-            req.setAttribute("msg",res > 0 ? "添加材料成功" : "添加材料失败");
+            req.setAttribute("msg", res > 0 ? "添加材料成功" : "添加材料失败");
             req.setAttribute("head", "添加材料");
             req.setAttribute("flag", res > 0 ? "1" : "0");
         }
         // 转发回登陆页面，写携带msg信息
-        req.getRequestDispatcher("/jsp/item/info.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/item/info.jsp").forward(req, resp);
     }
 }

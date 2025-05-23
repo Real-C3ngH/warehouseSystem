@@ -38,18 +38,6 @@ public class IdUtils {
     private long lastTimestamp = -1L;
 
     /**
-     * 获取id
-     *
-     * @return SnowflakeIdUtils
-     */
-    public static String getId() {
-        if (idUtils == null) {
-            idUtils = new IdUtils(0, 0);
-        }
-        return idUtils.nextId() + "";
-    }
-
-    /**
      * 构造函数
      *
      * @param workerId     工作ID (0~31)
@@ -74,6 +62,17 @@ public class IdUtils {
         this.datacenterId = datacenterId;
     }
 
+    /**
+     * 获取id
+     *
+     * @return SnowflakeIdUtils
+     */
+    public static String getId() {
+        if (idUtils == null) {
+            idUtils = new IdUtils(0, 0);
+        }
+        return idUtils.nextId() + "";
+    }
 
     /**
      * 获得下一个ID (该方法是线程安全的)

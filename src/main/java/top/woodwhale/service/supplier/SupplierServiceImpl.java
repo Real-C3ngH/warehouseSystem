@@ -9,9 +9,8 @@ import top.woodwhale.utils.TextUtils;
 import java.util.List;
 
 public class SupplierServiceImpl implements ISupplierService {
-    ISupplierDao supplierDao = new SupplierDaoImpl();
-
     private static ISupplierService supplierService = null;
+    ISupplierDao supplierDao = new SupplierDaoImpl();
 
     private SupplierServiceImpl() {
 

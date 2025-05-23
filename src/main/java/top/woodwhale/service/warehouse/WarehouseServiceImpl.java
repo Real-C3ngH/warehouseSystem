@@ -11,11 +11,12 @@ import top.woodwhale.utils.TextUtils;
 import java.util.List;
 
 public class WarehouseServiceImpl implements IWarehouseService {
+    private static IWarehouseService warehouseService = null;
     /**
      * 仓库dao层
      */
     IWarehouseDao IWarehouseDao = new WarehouseDaoImpl();
-    private static IWarehouseService warehouseService = null;
+
     private WarehouseServiceImpl() {
     }
 

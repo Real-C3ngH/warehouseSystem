@@ -1,7 +1,7 @@
 package top.woodwhale.service.bill;
 
-import top.woodwhale.dao.bill.IBillDao;
 import top.woodwhale.dao.bill.BillDaoImpl;
+import top.woodwhale.dao.bill.IBillDao;
 import top.woodwhale.dao.item.ItemDaoImpl;
 import top.woodwhale.dao.supplier.SupplierDaoImpl;
 import top.woodwhale.dao.warehouse.WarehouseDaoImpl;
@@ -13,9 +13,8 @@ import top.woodwhale.utils.TextUtils;
 import java.util.List;
 
 public class BillServiceImpl implements IBillService {
-    IBillDao billDao = new BillDaoImpl();
-
     private static IBillService billService = null;
+    IBillDao billDao = new BillDaoImpl();
 
     private BillServiceImpl() {
 

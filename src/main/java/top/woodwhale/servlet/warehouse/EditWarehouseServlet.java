@@ -26,12 +26,12 @@ public class EditWarehouseServlet extends HttpServlet {
             warehouse.setId(id);
             IWarehouseService warehouseService = WarehouseServiceImpl.getWarehouseService();
             int res = warehouseService.editWarehouseById(id, warehouse);
-            req.setAttribute("msg",res > 0 ? "更新仓库成功" : "更新仓库失败");
+            req.setAttribute("msg", res > 0 ? "更新仓库成功" : "更新仓库失败");
             req.setAttribute("head", "更新仓库");
             req.setAttribute("flag", res > 0 ? "1" : "0");
         }
         // 转发回登陆页面，写携带msg信息
-        req.getRequestDispatcher("/jsp/warehouse/info.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/warehouse/info.jsp").forward(req, resp);
     }
 
     @Override
